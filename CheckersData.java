@@ -198,7 +198,6 @@ public class CheckersData {
                 }
             }
         }
-        System.out.println("Legal moves number: " + legalMoves.size());
         if (legalMoves.isEmpty()) {
             return null;
         }

@@ -39,8 +39,7 @@ public class MonteCarloTreeSearch extends AdversarialSearch {
         // 2 - red king
         // 3 - black man
         // 4 - black king
-        int iterations = 400;
-        int rootTurn;
+        int iterations = 10000;
         if (legalMoves == null || legalMoves.length == 0) {
             return null;
         }
@@ -52,9 +51,8 @@ public class MonteCarloTreeSearch extends AdversarialSearch {
         for(int i = 0; i < iterations; i++) {
             MCNode<CheckersData> selectedNode = select(root);
             if (selectedNode == null) {
-                return null; // todo: ??
+                return null;
             }
-            System.out.println("Iteration: "+ i );
             rollout(selectedNode);
         }
         //PICKING HIGHEST SCORE NODE TO RETURN
@@ -146,10 +144,8 @@ public class MonteCarloTreeSearch extends AdversarialSearch {
             return;
         }
         int index;
-        int iterations = 0;
         Random rand = new Random();
         while(!legalMoves.isEmpty()) {
-            iterations++;
             index = rand.nextInt(legalMoves.size());
             iterativeBoard.makeMove(legalMoves.get(index));
             CheckersMove[] moves = iterativeBoard.getLegalMoves(turn);
@@ -165,7 +161,7 @@ public class MonteCarloTreeSearch extends AdversarialSearch {
             score = 1;
         }
         else{
-            score = 0;
+            score = -1;
         }
         root.total_score = score;
         root.num_visits = root.num_visits + 1;
@@ -177,17 +173,4 @@ public class MonteCarloTreeSearch extends AdversarialSearch {
         }
 
     }
-    // TODO
-    // 
-    // Implement your helper methods here. They include at least the methods for selection,  
-    // expansion, simulation, and back-propagation. 
-    // 
-    // For representation of the search tree, you are suggested (but limited) to use a 
-    // child-sibling tree already implemented in the two classes CSTree and CSNode (which  
-    // you may feel free to modify).  If you decide not to use the child-sibling tree, simply 
-    // remove these two classes. 
-    //
-
-
-
 }

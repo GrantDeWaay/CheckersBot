@@ -38,8 +38,7 @@ public class Checkers extends JPanel {
     
 	public static void main(String[] args) {
 		System.out.println("A Checker-Playing Agent Using the Monte Carlo Tree Search");
-		// 1: Use Monte Carlo tree search throughout the game. 
-		System.out.println("keys: 1 (MCTS)  2 (Other - not implemented yet)\n");
+		// 1: Use Monte Carlo tree search throughout the game.
         JFrame window = new JFrame("Checkers");
         
         
@@ -247,7 +246,9 @@ public class Checkers extends JPanel {
             displayBoard = new CheckersData();
             agentBoard = new CheckersData();
             //Select the AI players.
-            decideAIplayer();
+            aiKey = 1;
+            player = new MonteCarloTreeSearch();
+            //decideAIplayer();
             //Start new game
             doNewGame();
         }
